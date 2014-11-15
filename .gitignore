@@ -1,0 +1,14 @@
+
+*.aux
+*-blx.bib
+*.gz
+*.log
+*.nav
+*.out
+*.pdf
+*.pre
+*.run.xml
+*.snm
+*.swp
+*.toc
+
