@@ -227,7 +227,7 @@ What \underline{information} is \underline{encoded} in pixels?
 \item Bit-depth
 \item Camera location/field of view
 \item Motion of the camera/objects
-\item Sensor noise
+\item Sensor noise statistics
 \item ...
 \end{itemize} 
 }
@@ -248,6 +248,21 @@ Why are there multiple \underline{color models}?
 }
 
 \section{RoboRealm software}
+
+\frame{ 
+\frametitle{RoboRealm}
+\begin{itemize}
+\item Can be installed by students for a 30-day evaluation for free in the 
+off-season.
+\item Important to practice algorithm development now before the season!
+\end{itemize}
+
+\centering
+\url{http://www.roborealm.com/FRC2014/}
+
+Click Trial Copy link on the page.
+}
+
 \frame{ 
 \frametitle{RoboRealm start screen}
 %\begin{figure}
@@ -266,6 +281,24 @@ Why are there multiple \underline{color models}?
 %\end{figure}
 }
 
+\frame{ 
+\frametitle{RoboRealm sequence of steps}
+The left column shows potential steps that can be applied.
+
+\begin{enumerate}
+\item First step is to load an image (look under Loading/Saving on the left 
+list)
+\item Next steps are to perform math steps on the image, potentially isolating 
+a color region (by the \underline{Filters} or Colors items) or so 
+forth.
+\item Final steps will be to calculate information and provide to the robot, 
+perhaps by NetworkTables or general network communication. 
+\end{enumerate}
+
+There's more than one sequence of steps to perform the same result.  Some 
+approaches might be more \underline{robust} (or brittle!) than others.
+}
+
 \section{Vision resources}
 \frame{ 
 \frametitle{Vision resources}
@@ -274,7 +307,12 @@ Processing and Frisbee Shooter Controller Design}}
 
 [2] \href{http://programmingcomputervision.com/}{\underline{Programming 
 Computer Vision with Python}}
-}
 
+\vspace{0.5cm}
+The first paper shows steps performed in NI Vision Assistant, but the same 
+steps can be found in RoboRealm.  The second reference has sections that should 
+be interesting to read.
+
+}
 
 \end{document}
