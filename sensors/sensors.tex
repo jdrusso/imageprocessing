@@ -78,26 +78,65 @@ goal of being able to explain the concepts to others.
 \end{itemize}
 }
 
-\subsection{Definitions}
-\frame{\frametitle{Definitions}
-A \underline{Transducer}:  
-\\
-A continuous signal
-A discrete signal
+\subsection{Robot Hardware}
+\frame{
+\frametitle{RobotRIO (the ``robot brain'')}
+\includegraphics[width=\textwidth]{RobotRio}
 }
 
+\frame{
+\frametitle{Old hardware connection options (for comparison only)}
+\includegraphics[width=2.5in]{DigitalSideCar}
+\includegraphics[width=2in]{AnalogSideCar}
+}
+
+\subsection{Definitions}
 \frame{\frametitle{Definitions}
-A \underline{analog signal}:
-\\
-A \underline{digital signal}:  
-\\
-A \underline{pulse-width modulated} (PWM) signal:
-\\
 An \underline{input} signal is a signal generated on some external hardware 
 that is going into the RobotRIO.
 \\
 An \underline{output} signal is a signal generated on the RobotRIO that is 
 going to external hardware.
+\\
+A \underline{digital input/output} port (DIO) on the RobotRIO can perform 
+either 
+input or output, but not both.
+}
+
+
+
+
+\frame{\frametitle{Analog signals}
+\begin{figure}
+\centering
+\includegraphics[width=2in]{analog}
+\end{figure}
+A \underline{analog signal} represents a varying quantity using a continuous 
+independent variable, such as time.
+\\
+Examples: acoustic, acceleration, velocity, pressure, temperature --- many 
+examples exist in nature.
+}
+
+\frame{\frametitle{Digital signals}
+\includegraphics[width=2in]{pwm} 
+\hspace{0.2cm}\includegraphics[width=1.75in]{digital}
+\\
+A \underline{digital signal} can be represented in two ways:
+\begin{enumerate}
+\item a continuous-time \underline{waveform} representing a bit stream 
+(transitions occur at discrete times)
+\item a discrete-time \underline{pulse train} of discrete values
+\end{enumerate}
+}
+
+\frame{\frametitle{PWM signal}
+\begin{figure}
+\includegraphics[width=2in]{pwm2}
+\end{figure}
+
+A \underline{pulse-width modulated} (PWM) signal \underline{encodes} a value 
+into a pulse width $\tau$ of a signal with periodicity $T$.
 }
 
 \frame{\frametitle{Definitions}
@@ -113,28 +152,33 @@ that the noise does not strongly affect the output.
 }
 
 
-\subsection{Hardware}
-\frame{
-\frametitle{RobotRIO}
-\includegraphics[width=\textwidth]{RobotRio}
-}
 
-\frame{
-\frametitle{Old hardware}
-\includegraphics[width=2in]{DigitalSideCar}
-\includegraphics[width=2in]{AnalogSideCar}
-}
 
 \section{Sensors}
 \subsection{Simple}
 \frame{
 \frametitle{Contact switch}
-\includegraphics[width=\textwidth]{LimitSwitch}
+\begin{figure}
+\includegraphics[width=2in]{LimitSwitch}
+\end{figure}
+
+We can treat this sensor like a digital signal.
+\underline{Normally Open} (NO) is 0 at rest, 1 when pressed.  
+\underline{Normally Closed} (NC) is 1 at rest, 0 when pressed.  Only need 2 
+wires (ground and signal), because the \underline{Common} (COM) is connected to 
+either NC or NO, but not both.
+
+Difficulty: metal bends easily.
 }
 
 \frame{
 \frametitle{Electronic switch}
 \includegraphics[width=\textwidth]{DriverStation}
+}
+
+\frame{
+\frametitle{Pressure switch}
+\includegraphics[width=2in]{PressureSwitch}
 }
 
 \frame{
