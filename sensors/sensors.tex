@@ -37,7 +37,7 @@ edge[every join]#1(\tikzchaincurrent)\fi}}}
 \usepackage[style=ieee]{biblatex}
 \addbibresource{presentation}
 %\ExecuteBibliographyOptions{numeric-comp}
-
+\usepackage{wrapfig}
 \def\docversion{Notes Version 0.1}
 
 \usetheme{Luebeck}
@@ -130,28 +130,32 @@ A \underline{digital signal} can be represented in two ways:
 \end{enumerate}
 }
 
-\frame{\frametitle{PWM signal}
+\begin{frame}[shrink]{PWM signal}
 \begin{figure}
 \includegraphics[width=2in]{pwm2}
 \end{figure}
 
 A \underline{pulse-width modulated} (PWM) signal \underline{encodes} a value 
 into a pulse width $\tau$ of a signal with periodicity $T$.
-}
 
-\frame{\frametitle{Definitions}
-Noise is random changes to the signal due to physical properties of the sensor.
-All sensors are subject to noise.  Noise can only be quantified by statistics, 
-as its actual value $n(t)$ cannot be known.
-
-It is desirable for a control system to be \underline{Robust} to noise, meaning 
-that the noise does not strongly affect the output.
-
-\underline{Uncertainty} is the incorrect (or absent) modeling of a system.
-
-}
+\begin{block}{Express the value $v\overset{?}{=} f(\tau, T)$}
+Write an equation to assign a value given $\tau$ and $T$.  What range of values 
+does your formula assign?
+\end{block}
+\end{frame}
 
 
+%\frame{\frametitle{Definitions}
+%Noise is random changes to the signal due to physical properties of the sensor.
+%All sensors are subject to noise.  Noise can only be quantified by statistics, 
+%as its actual value $n(t)$ cannot be known.
+%
+%It is desirable for a control system to be \underline{Robust} to noise, 
+%meaning 
+%that the noise does not strongly affect the output.
+%
+%\underline{Uncertainty} is the incorrect (or absent) modeling of a system.
+%}
 
 
 \section{Sensors}
@@ -173,55 +177,212 @@ Difficulty: metal bends easily.
 
 \frame{
 \frametitle{Electronic switch}
+\begin{figure}
 \includegraphics[width=\textwidth]{DriverStation}
+\end{figure}
+
+Available on the Driver Station program on the Laptop, these analog and digital 
+are virtual hardware inputs to the robot.  The digital outputs are virtual LEDs 
+on the robot.
+
+The names of each can be changed by double clicking on the entry; the names are 
+saved in a Driver station configuration file.
+
+Difficulty: values can be set before a match, but not commonly changed during 
+the match.
 }
 
 \frame{
 \frametitle{Pressure switch}
+\begin{figure}
 \includegraphics[width=2in]{PressureSwitch}
+\end{figure}
+
+We can treat this sensor like a digital signal and it only needs 2 
+wires (ground and signal).
+
+Must be installed for pneumatic system --- programming the \texttt{Compressor} 
+class object requires the Digital input for this sensor.
 }
 
 \frame{
 \frametitle{Potentiometer}
+\begin{figure}
 \includegraphics[width=1in]{Potentiometer}
 \includegraphics[width=1in]{Potentiometer2}
+\includegraphics[width=2in]{resistors}
+\end{figure}
+
+Needs 3 wires, treated as an analog input.  This circuit is called a 
+\underline{voltage divider} and it is modelled as two 
+\underline{variable resistors} in \underline{series}.
+\begin{equation*}
+V_\text{meas}=\left(\sim 5 \text{V}\right) \times 
+\left(\frac{R_2}{R_1+R_2}\right)
+\text{where } R_1 + R_2 = \text{constant}
+\end{equation*}
+
+Pros: Fairly sensitive.  Cons: Does have a \underline{short circuit} position.
 }
 
-\frame{
-\frametitle{Rotary encoder}
+\begin{frame}[shrink]{Rotary encoder}
+\begin{figure}[width=\textwidth]
 \includegraphics[width=1in]{OpticalEncoder}
 \includegraphics[width=1in]{OpticalEncoder2}
 \includegraphics[width=1in]{MagneticEncoder}
 \includegraphics[width=1in]{MagneticEncoder2}
-}
+\caption{Left: Optical, Right: Magnetic}
+\end{figure}
+
+Uses 2 PWM signals in \underline{quadrature} that are connected to 2 digital 
+inputs.  A single PWM signal would not contain rotation direction information, 
+but using 2 PWM signals allows for direction to be known.
+
+Difficulty: Optical sensor gets dirty with lazy handling (useless).  Plastic 
+case clips break if the casing needs to be opened after closing.  Aligning the 
+sensor to the rotating axle.  Small wires must be soldered to PWM cables 
+to connect to digital inputs (messy wiring).
+\end{frame}
+
+\begin{frame}[shrink]{Rotary encoder}
+\begin{figure}[width=\textwidth]
+\includegraphics[width=1in]{OpticalEncoder}
+\includegraphics[width=1in]{OpticalEncoder2}
+\includegraphics[width=1in]{MagneticEncoder}
+\includegraphics[width=1in]{MagneticEncoder2}
+\caption{Left: Optical, Right: Magnetic}
+\end{figure}
+
+Uses: motor speed, distance estimation (\underline{trajectory following}), 
+autonomous or 
+\underline{fly-by-wire}.
+
+One per side of robot? One per wheel? Separate free-spinning wheels?
+\end{frame}
 
 \subsection{Imaging}
 \frame{
 \frametitle{AXIS Webcam}
 \includegraphics[width=1in]{AXISwebcam}
+
+Traditional FRC hardware for a camera.  This camera plus a LED ring has been 
+the basis for most FRC vision processing.
 }
 
 \frame{
 \frametitle{PixyCam}
+\begin{wrapfigure}{l}{1in}
 \includegraphics[width=1in]{PixyCam}
-}
+\end{wrapfigure}
+These devices process the image on-board (inside the Pixy!) very quickly.  We 
+could program the firmware to look for specific colored objects.  The camera 
+connects easily to I2C, SPI, UART, digital outputs, several of which are on the 
+RobotRIO.  These devices also connect easily to an arduino, and we could 
+network the arduino to the RobotRIO.
 
-\frame{
-\frametitle{Kinect}
-\includegraphics[width=\textwidth]{kinect}
+I have 4 of these cameras and wanted to look into mounting multiple ones onto 
+the robot.  We can also purchase servo kits to make the cameras move relative 
+to the robot frame (they could search for objects without the robot base 
+moving).
 }
 
 \frame{
 \frametitle{Kinect}
 \includegraphics[width=1in]{kinect}
+
+The Kinect is easy to hook up to a desktop computer, but perhaps the RobotRIO 
+would support a direct connection since it now has USB.  The kinect provides a 
+camera and depth (distance) information that we could use for a variety of 
+purposes.
 }
 
 \frame{
 \frametitle{Playstation Camera}
 \includegraphics[width=1in]{PlaystationCamera}
+Same as the kinect, need to investigate how easy it is to connect to the 
+RobotRIO.
+}
+
+\subsection{Distance estimation}
+\frame{
+\frametitle{Ultrasonic rangefinder}
+\includegraphics[width=1in]{Ultrasonic}
+\includegraphics[width=1in]{Ultrasonic2}
+
+The ultrasonic can measure a linear distance up to about 20 feet away.  
+Mounting several of these on the robot could allow us to do a variety of 
+control approaches (such as maintaining a particular distance to a target).
+
+Cons: wiring can be tricky.
+}
+
+\frame{
+\frametitle{Laser rangefinder}
+\begin{figure}
+\includegraphics[width=1in]{LaserRangefinder}
+\end{figure}
+
+Unfortunately, lasers are not permitted by FRC rules.  But these are very 
+powerful in robotics research.
 }
 
 \subsection{Location and Orientation}
+\frame{
+\frametitle{GPS}
+Unfortunately not possible in the arenas due to weak signal.  The non-military 
+signal also has such a large error ellipse that it is not useful to determine 
+position inside of the playing field.
+}
+
+\begin{frame}[shrink]{Indoor GPS}
+
+This would be a lot of fun, but FIRST would need to build the indoor GPS around 
+the playing field (\emph{e.g.} the stars below).
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{FRCarenaGPS}
+\end{figure}
+
+Would be novel if we use vision or other means to triangulate position on the 
+field.
+\end{frame}
+
+\begin{frame}[shrink]{Trackball}
+We could mount a trackball upside down on the robot.  The floor would cause the 
+ball to roll.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Trackball}
+\end{figure}
+This would be a lot of fun, but need to see if it would connect to RobotRIO.
+Would be novel if we use it to estimate path on the field.
+\end{frame}
+
+\begin{frame}[shrink]{Occulus}
+
+This would be a lot of fun, but need to see if we could do something with it.  
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{Occulus}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+\item Move the robot based on human head rotation?  
+\item Have a camera mounted on the robot with servos that looks where the human 
+wants?
+\item Human points a mechanism?  
+\item Screen shows estimated projectile path 
+overlayed camera view?
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
 \frame{
 \frametitle{Gyro}
 \includegraphics[width=1in]{Gyro}
@@ -231,25 +392,9 @@ Difficulty: metal bends easily.
 \frametitle{Accelerometer}
 }
 
-\frame{
-\frametitle{GPS}
-}
 
-\frame{
-\frametitle{Indoor GPS}
-}
 
-\subsection{Distance estimation}
-\frame{
-\frametitle{Ultrasonic rangefinder}
-\includegraphics[width=1in]{Ultrasonic}
-\includegraphics[width=1in]{Ultrasonic2}
-}
 
-\frame{
-\frametitle{Laser rangefinder}
-\includegraphics[width=1in]{LaserRangefinder}
-}
 
 \section{Haptic and Controls}
 \frame{
@@ -264,12 +409,13 @@ Difficulty: metal bends easily.
 \frametitle{Wii balance board}
 }
 
-\section{Conclusion}
 \frame{
 \frametitle{LEGO Mindstorm}
 The LEGO Mindstorm has equivalent sensors for:
-Color, light detection, axis rotation, contact, IR, ultrasonic, ...
+color, light detection, axis rotation, contact, IR, ultrasonic, ...
 }
+
+\section{Conclusion}
 
 \subsection{Resources}
 \frame{ 
