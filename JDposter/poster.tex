@@ -15,12 +15,25 @@
 
 \author{Maggie Graves \& JD Russo}
 \title{Applications of Linear Algebra in Neural Networks}
-\institute{MATH 245: Linear Algebra\\
+\institute{MATH 245: Linear Algebra,
  Department of Mathematics, Bucknell University, Lewisburg, PA}
 \makeatletter
 \let\Author\@author
 \let\Title\@title
 \makeatother
+\newcommand{\blockheading}[1]{
+\begin{tikzpicture}[remember picture,overlay]
+\shade[top color=blue!85!black,bottom color=blue!85!black,middle color=blue!50]
+  %([shift={(0.5cm,-0.5cm)}]current page.north west)
+  ([shift={(0.5cm,-0.5cm)}](0.0cm, 0.0cm)
+     rectangle
+  ([shift={(-0.5cm,0.5cm)}](\textwidth, -4.0cm);
+  
+  \draw (0.5\textwidth, -2.2cm) node 
+  {{\color{white}\large{\textbf{#1}}\\[1ex]}};
+\end{tikzpicture}
+\vspace{5cm}
+}
 
 \begin{document}
 
@@ -129,7 +142,17 @@ First block
 \begin{block}{Title of block 2}
 Second block
 \end{block}
+\blockheading{Testing!!!!!}
+\begin{itemize}
+\item Here is the first item
+\item Here is the second item with math $y = \mathbf{A} x$
+\end{itemize}
 
+\begin{enumerate}
+\item First things first
+\item Second things second
+\item The color selection needs some work.
+\end{enumerate}
 \end{column}
 \begin{column}{0.3\textwidth}
 \begin{block}{Title of block 3}
