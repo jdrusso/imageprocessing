@@ -1,0 +1,148 @@
+\documentclass{beamer}
+\usepackage[orientation=landscape, size=a0, scale=2]{beamerposter}
+\usepackage{amsmath,amsthm, amssymb, latexsym}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{epstopdf}
+%\mode<presentation>{\usetheme{Luebeck}}
+\mode<presentation>{\usetheme{I6pd2}}
+\usecolortheme{lily}
+\usefonttheme{serif}
+\setbeamercolor{block title}{use=structure,fg=white,bg=blue!75!black}
+\setbeamercolor{block body}{use=structure,fg=black,bg=black!20!white}
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\author{Maggie Graves \& JD Russo}
+\title{Applications of Linear Algebra in Neural Networks}
+\institute{MATH 245: Linear Algebra\\
+ Department of Mathematics, Bucknell University, Lewisburg, PA}
+\makeatletter
+\let\Author\@author
+\let\Title\@title
+\makeatother
+
+\begin{document}
+
+%\makeatletter
+%
+%\pgfdeclareshape{rectangle with diagonal fill}
+%{
+%    % This bit from \pgflibarayshapes.code.tex
+%    \inheritsavedanchors[from=rectangle]
+%    \inheritanchorborder[from=rectangle]
+%    \inheritanchor[from=rectangle]{north}
+%    \inheritanchor[from=rectangle]{north west}
+%    \inheritanchor[from=rectangle]{north east}
+%    \inheritanchor[from=rectangle]{center}
+%    \inheritanchor[from=rectangle]{west}
+%    \inheritanchor[from=rectangle]{east}
+%    \inheritanchor[from=rectangle]{mid}
+%    \inheritanchor[from=rectangle]{mid west}
+%    \inheritanchor[from=rectangle]{mid east}
+%    \inheritanchor[from=rectangle]{base}
+%    \inheritanchor[from=rectangle]{base west}
+%    \inheritanchor[from=rectangle]{base east}
+%    \inheritanchor[from=rectangle]{south}
+%    \inheritanchor[from=rectangle]{south west}
+%    \inheritanchor[from=rectangle]{south east}
+%
+%    \inheritbackgroundpath[from=rectangle]
+%    \inheritbeforebackgroundpath[from=rectangle]
+%    \inheritbehindforegroundpath[from=rectangle]
+%    \inheritforegroundpath[from=rectangle]
+%    \inheritbeforeforegroundpath[from=rectangle]
+%
+%   % Now do the background filling.
+%    \behindbackgroundpath{%
+%        % \southwest and \northeast defined by rectangle, but
+%        % (somewhat annoyingly) not \southeast and \northwest
+%        % so use this workaround.
+%        \pgfextractx{\pgf@xa}{\southwest}%
+%        \pgfextracty{\pgf@ya}{\southwest}%
+%        \pgfextractx{\pgf@xb}{\northeast}%
+%        \pgfextracty{\pgf@yb}{\northeast}%
+%        \ifpgf@diagonal@lefttoright
+%            \def\pgf@diagonal@point@a{\pgfpoint{\pgf@xa}{\pgf@yb}}%
+%            \def\pgf@diagonal@point@b{\pgfpoint{\pgf@xb}{\pgf@ya}}%
+%        \else
+%            \def\pgf@diagonal@point@a{\southwest}%
+%            \def\pgf@diagonal@point@b{\northeast}%
+%        \fi
+%        \pgfpathmoveto{\pgf@diagonal@point@a}%
+%        \pgfpathlineto{\northeast}%
+%        \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@ya}}%
+%        \pgfpathclose
+%        \ifpgf@diagonal@lefttoright
+%            \color{\pgf@diagonal@top@color}%
+%        \else
+%            \color{\pgf@diagonal@bottom@color}%
+%        \fi
+%        \pgfusepath{fill}%
+%        \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@yb}}%
+%        \pgfpathlineto{\southwest}%
+%        \pgfpathlineto{\pgf@diagonal@point@b}%
+%        \pgfpathclose
+%        \ifpgf@diagonal@lefttoright
+%            \color{\pgf@diagonal@bottom@color}%
+%        \else
+%            \color{\pgf@diagonal@top@color}%
+%        \fi
+%        \pgfusepath{fill}%
+%    }
+%}
+%
+%\newif\ifpgf@diagonal@lefttoright
+%\def\pgf@diagonal@top@color{white}
+%\def\pgf@diagonal@bottom@color{gray!30}
+%
+%% Use these with PGF
+%\def\pgfsetdiagonaltopcolor#1{\def\pgf@diagonal@top@color{#1}}%
+%\def\pgfsetdiagonalbottomcolor#1{\def\pgf@diagonal@bottom@color{#1}}%
+%\def\pgfsetdiagonallefttoright{\pgf@diagonal@lefttorighttrue}%
+%\def\pgfsetdiagonalrighttoleft{\pgf@diagonal@lefttorightfalse}%
+%
+%% Use these with TikZ
+%\tikzoption{diagonal top color}{\pgfsetdiagonaltopcolor{#1}}
+%\tikzoption{diagonal bottom color}{\pgfsetdiagonalbottomcolor{#1}}
+%\tikzoption{diagonal from left to right}[]{\pgfsetdiagonallefttoright}
+%\tikzoption{diagonal from right to left}[]{\pgfsetdiagonalrighttoleft}
+%
+%\makeatother
+\begin{frame}
+%\makeatletter
+
+%\makeatother
+
+\vspace{15cm}
+
+%\begin{tikzpicture}[inner sep=6pt,scale=2]
+%    \node[shape=rectangle with diagonal fill, diagonal from right to left, 
+%          draw] at (1,1) {\Large 1};
+%\end{tikzpicture}
+
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\begin{block}{Title of block 1}
+First block
+\end{block}
+\begin{block}{Title of block 2}
+Second block
+\end{block}
+
+\end{column}
+\begin{column}{0.3\textwidth}
+\begin{block}{Title of block 3}
+Third block
+\end{block}
+\begin{block}{Title of block 4}
+Fourth block
+\end{block}
+\end{column}
+\begin{column}{0.3\textwidth}
+content...
+\end{column}
+\end{columns}
+\end{frame}
+
+\end{document}
